@@ -5,7 +5,7 @@
         public int Number { get; set; }
         public int Index { get; set; }
 
-        public bool IsEven()
+        public bool IsNumberEven()
         {
             return Number % 2 == 0;
         }

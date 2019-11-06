@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using TheGreatPyramid.Services;
+﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using TheGreatPyramid.Services.Interface;
 
 namespace TheGreatPyramid.Controllers
 {
@@ -12,21 +8,28 @@ namespace TheGreatPyramid.Controllers
     [ApiController]
     public class PyramidController : ControllerBase
     {
+        private readonly IPyramidValueCalculator pyramidValueCalculator;
+
+        public PyramidController(IPyramidValueCalculator pyramidValueCalculator)
+        {
+            this.pyramidValueCalculator = pyramidValueCalculator;
+        }
+
         [HttpGet]
         public IActionResult Get()
         {
-            var reader = new Reader();
-            var calculator = new Calculator();
+            try
+            {
+                pyramidValueCalculator.Execute();
 
-            var rawData = reader.Read();
+                var result = pyramidValueCalculator.CalculationResult;
 
-            calculator.Initialize(rawData);
-            calculator.CalculatePyramidPath();
-            calculator.CalculateMaxSum();
-
-            var sum = calculator.MaxSum;
-
-            return Ok(sum);
+                return Ok(result);
+            }
+            catch(Exception exception)
+            {
+                return StatusCode(500, exception.ToString());
+            }
         }
     }
 }

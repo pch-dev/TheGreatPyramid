@@ -1,5 +1,4 @@
-﻿using MoreLinq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace TheGreatPyramid.Models
@@ -12,7 +11,6 @@ namespace TheGreatPyramid.Models
         }
 
         public IList<PyramidItem> Items { get; set; }
-        public int Depth { get; set; }
 
         public void AddItem(int number, int index)
         {
@@ -24,11 +22,11 @@ namespace TheGreatPyramid.Models
                 });
         }
 
-        public PyramidItem GetMaxItem()
+        public IList<PyramidItem> GetItemsByParentIndex(int parentIndex)
         {
-            var item = Items.MaxBy(i => i.Number).Single();
+            var children = Items.Skip(parentIndex).Take(2).ToList();
 
-            return item;
+            return children;
         }
     }
 }
