@@ -4,10 +4,10 @@ This is ASP.NET Core 2.2 WEB API
 
 Developed based on requirements below.
 
-Call endpoint:
+Call HttpGet endpoint:
 [hostname]/api/pyramid
 
-where hostname is your localhost address (example: localhost:5000)
+where hostname is your localhost address (example: http://localhost:5000/api/pyramid)
 
 
 REQUIREMENTS
