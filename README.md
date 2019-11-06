@@ -1,10 +1,12 @@
 # TheGreatPyramid
 
 This is ASP.NET Core 2.2 WEB API
+
 Developed based on requirements below.
 
 Call endpoint:
 [hostname]/api/pyramid
+
 where hostname is your localhost address (example: localhost:5000)
 
 
@@ -35,8 +37,9 @@ Path: 1, 8, 5, 2
 Explanation:
 As you can see this triangle has several paths: 1->8->5->2, 1->9->9->3, 1->8->1->4, etc…
 The correct answer is 1 + 8 + 5 + 2 = 16. Because since 1 (top most number) is odd we cannot walk onto
-9 because 9 is an odd number too. The only place we can step is 8. From 8 we can walk to 1 or 5. Only 1 -
-> 8 -> 5 -> 2 sequence gives us the maximum sum. The other path 1-> 8 -> 1 -> 4 is also a valid path but
+9 because 9 is an odd number too. The only place we can step is 8. From 8 we can walk to 1 or 5. 
+
+Only 1 -> 8 -> 5 -> 2 sequence gives us the maximum sum. The other path 1-> 8 -> 1 -> 4 is also a valid path but
 it sums up to 14. Since 16 is greater than 14, 16 is the solution. Also, note that the solution is in the form
 of odd > even > odd > even. 
 
