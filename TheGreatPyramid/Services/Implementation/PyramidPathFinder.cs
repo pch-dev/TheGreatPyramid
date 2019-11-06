@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using TheGreatPyramid.Helpers;
 using TheGreatPyramid.Models;
@@ -30,18 +31,30 @@ namespace TheGreatPyramid.Services.Implementation
             {
                 var children = GetChildrenItems(parent);
 
+                if (!children.Any())
+                {
+                    throw new Exception("Pyramid path cannot be completed. No proper child elements found.");
+                }
+
                 var maxItem = children.GetItemByMaxNumber();
 
                 PyramidPath.Add(maxItem);
 
                 parent = maxItem;
             }
+
+            DisposeEnumerator();
         }
 
         private void InitializeEnumerator()
         {
             Enumerator = Pyramid.Levels.GetEnumerator();
             Enumerator.MoveNext();
+        }
+
+        private void DisposeEnumerator()
+        {
+            Enumerator.Dispose();
         }
 
         private PyramidItem InitializeParent()
